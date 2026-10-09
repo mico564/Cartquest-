@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CartQuest</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #172033;
+    }
+    header {
+      background: #172033;
+      color: white;
+      padding: 22px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; }
+    main {
+      max-width: 650px;
+      margin: 25px auto;
+      padding: 18px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px #0000000d;
+    }
+    .balance {
+      background: #e7f8ef;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .amount {
+      font-size: 30px;
+      font-weight: bold;
+      color: #147d4a;
+    }
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 13px 17px;
+      background: #4c55d9;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+    .secondary { background: #39445a; }
+    .note { color: #657087; font-size: 14px; line-height: 1.5; }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0 12px;
+      border: 1px solid #ccd2df;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    footer { text-align: center; padding: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CartQuest</h1>
+    <p>Your task dashboard</p>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Welcome to CartQuest</h2>
+      <p>Manage your simulated orders and track virtual rewards.</p>
+      <button onclick="showSection('user')">User Dashboard</button>
+      <button class="secondary" onclick="showSection('support')">Customer Support</button>
+      <p class="note">Demo interface only. No real orders, deposits,
+      withdrawals, or guaranteed earnings.</p>
+    </section>
+<section class="card" id="user">
+  <h2>User Dashboard</h2>
+  <div class="balance">
+    Virtual balance
+    <div class="amount" id="balance">$0.00</div>
+  </div>
+  <h3>Simulated order</h3>
+  <p id="order">Demo order amount: $20.00</p>
+  <p id="commission">Virtual commission: $1.00</p>
+  <button onclick="completeDemo()">Complete demo task</button>
+  <p class="note" id="message">This is a local demonstration, not a real account.</p>
+</section>
+
+<section class="card" id="support">
+  <h2>Customer Support</h2>
+  <label for="question">How can we help?</label>
+  <input id="question" placeholder="Type your question">
+  <button onclick="sendQuestion()">Prepare question</button>
+  <p id="supportMessage" class="note"></p>
+</section>
+
+<section class="card">
+  <h2>Admin Dashboard</h2>
+  <p>Admin controls will be added after secure authentication and database setup.</p>
+  <p class="note">This preview does not provide real admin access or save shared user data.</p>
+</section>
+<section class="card" id="user">
+  <h2>User Dashboard</h2>
+  <div class="balance">
+    Virtual balance
+    <div class="amount" id="balance">$0.00</div>
+  </div>
+  <h3>Simulated order</h3>
+  <p id="order">Demo order amount: $20.00</p>
+  <p id="commission">Virtual commission: $1.00</p>
+  <button onclick="completeDemo()">Complete demo task</button>
+  <p class="note" id="message">This is a local demonstration, not a real account.</p>
+</section>
+
+<section class="card" id="support">
+  <h2>Customer Support</h2>
+  <label for="question">How can we help?</label>
+  <input id="question" placeholder="Type your question">
+  <button onclick="sendQuestion()">Prepare question</button>
+  <p id="supportMessage" class="note"></p>
+</section>
+
+<section class="card">
+  <h2>Admin Dashboard</h2>
+  <p>Admin controls will be added after secure authentication and database setup.</p>
+  <p class="note">This preview does not provide real admin access or save shared user data.</p>
+</section>
+  </main>
+  <footer class="note">CartQuest · Simulated demo</footer>
+  <script>
+    let virtualBalance = 0;
+    let demoCompleted = false;
+
+    function showSection(id) {
+      document.getElementById(id).scrollIntoView({behavior: "smooth"});
+    }
+
+    function completeDemo() {
+      if (demoCompleted) {
+        document.getElementById("message").textContent =
+          "This demo task has already been completed.";
+        return;
+      }
+      demoCompleted = true;
+      virtualBalance += 1;
+      document.getElementById("balance").textContent =
+        "$" + virtualBalance.toFixed(2);
+      document.getElementById("message").textContent =
+        "Demo complete. $1 virtual reward added locally.";
+    }
+
+    function sendQuestion() {
+      const q = document.getElementById("question").value.trim();
+      document.getElementById("supportMessage").textContent = q
+        ? "Your question is ready: " + q + ". A real support system will be connected later."
+        : "Please enter your question first.";
+    }
+  </script>
+</body>
+</html>
